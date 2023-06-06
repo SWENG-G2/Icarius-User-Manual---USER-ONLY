@@ -1,0 +1,53 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage[toc]{appendix}
+\usepackage[margin=2cm]{geometry}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage[normalem]{ulem}
+\useunder{\uline}{\ul}{}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{tikz}
+\newsavebox{\picbox}
+\newcommand{\cutpic}[3]{
+  \savebox{\picbox}{\includegraphics[width=#2]{#3}}
+  \tikz\node [draw, rounded corners=#1, line width=4pt,
+    color=white, minimum width=\wd\picbox,
+    minimum height=\ht\picbox, path picture={
+      \node at (path picture bounding box.center) {
+        \usebox{\picbox}};
+    }] {};}
+
+
+\usepackage{titlesec}
+
+\setcounter{secnumdepth}{4}
+
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+
+\def \dueDate{28\textsuperscript{th} May  2023}
+\def \ourCompany{Penelope LTD}
+\def \ourProduct{Fauna Finder}
+\def \weekNumber{34}
+
+\begin{document}
+\input{TitlePage/TitlePage}
+\tableofcontents
+\newpage
+
+\input{Introduction/introduction}
+\input{SystemRequirements/systemRequirements}
+\input{ApplicationStartup/applicationStartup}
+\include{MainTab/mainTab}
+\include{Conclusion/conclusion}
+
+\bibliographystyle{IEEEtran}
+\bibliography{bibtex.bib}
+\end{document}
